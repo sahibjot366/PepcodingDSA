@@ -1,0 +1,43 @@
+pattern 10
+
+import java.util.*;
+
+public class Main{
+
+public static void printPattern(int n){
+    int nsp1=n/2;
+    int nsp2=0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=nsp1;j++)
+            System.out.print("\t");
+        System.out.print("*\t");
+        for(int j=1;j<=nsp2;j++)
+            System.out.print("\t");
+        if(!(i==1 || i==n)){
+            System.out.print("*\t");
+        }
+        
+        System.out.println();
+        if(i<=n/2){
+            nsp1--;
+            if(i==1)
+                nsp2++;
+            else
+                nsp2+=2;
+        }
+        else{
+            nsp1++;
+            if(i==n-1)
+                nsp2--;
+            else
+                nsp2-=2;
+        }
+    }
+}
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+
+     // write ur code here
+    printPattern(scn.nextInt());
+ }
+}

@@ -1,0 +1,42 @@
+pattern 15
+
+
+import java.util.*;
+
+public class Main {
+
+    public static void pattern15(int n){
+        int nsp=n/2;
+        int nst=1;
+        int count=1;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=nsp;j++)
+                System.out.print("\t");
+            for(int k=1;k<=nst;k++){
+                System.out.print(count+"\t");
+                if(k!=nst){
+                    if(k<=nst/2)
+                    count++;
+                else
+                    count--;
+                }
+            }
+            System.out.println();
+            if(i<=n/2){
+                nsp--;
+                nst+=2;
+                count++;
+            }else{
+                nsp++;
+                nst-=2;
+                count--;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        // write ur code here
+        pattern15(scn.nextInt());
+    }
+}

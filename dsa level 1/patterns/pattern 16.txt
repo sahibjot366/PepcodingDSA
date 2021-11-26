@@ -1,0 +1,42 @@
+pattern 16
+
+import java.util.*;
+
+public class Main{
+public static void pattern16(int n){
+    int nst=1;
+    int nsp=2*n-3;
+    int count=1;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=nst;j++){
+            System.out.print(count+"\t");
+            if(j!=nst)
+                count++;
+        }
+        if(i==n){
+            count--;
+        }
+        for(int k=1;k<=nsp;k++)
+            System.out.print("\t");
+        if(i==n){
+            nst--;
+        }
+        for(int m=1;m<=nst;m++){
+            System.out.print(count+"\t");
+            if(m!=nst){
+                count--;
+            }
+        }
+        System.out.println();
+        nsp-=2;
+        nst++;
+    }
+}
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+
+     // write ur code here
+     pattern16(scn.nextInt());
+
+ }
+}

@@ -1,0 +1,39 @@
+pattern 12
+
+
+import java.util.*;
+
+public class Main {
+
+    public static void pattern12(int n){
+        int nst=1;
+        int nsp=n-1;
+        int a=0,b=1;
+        int c=a+b;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=nst;j++){
+                if(i==1)
+                    System.out.print(a+"\t");
+                else{
+                    System.out.print(c+"\t");
+                    c=a+b;
+                    a=b;
+                    b=c;
+                    
+                }
+                    
+            }
+            for(int k=1;k<=nsp;k++)
+                System.out.print("\t");
+            System.out.println();
+            nst++;
+            nsp--;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        // write ur code here
+        pattern12(scn.nextInt());
+    }
+}
