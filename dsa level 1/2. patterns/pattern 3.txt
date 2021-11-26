@@ -1,0 +1,27 @@
+pattern 3
+
+import java.util.*;
+
+public class Main {
+
+
+    public static void pattern3(int n){
+        int nsp=n-1;
+        int nst=1;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=nsp;j++)
+                System.out.print("\t");
+            for(int k=1;k<=nst;k++)
+                System.out.print("*\t");
+            System.out.println();
+            nst++;
+            nsp--;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+
+        // write ur code here
+        pattern3(scn.nextInt());
+    }
+}
