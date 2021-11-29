@@ -1,0 +1,37 @@
+any base subtraction
+
+import java.util.*;
+  
+  public class Main{
+  
+  public static void main(String[] args) {
+      Scanner scn = new Scanner(System.in);
+      int b = scn.nextInt();
+      int n1 = scn.nextInt();
+      int n2 = scn.nextInt();
+  
+      int d = getDifference(b, n1, n2);
+      System.out.println(d);
+   }
+  
+   public static int getDifference(int b, int n1, int n2){
+       // write your code here
+       int borrow=0;
+       int diff=0;
+       int m=1;
+       while(n2>0){
+           if(borrow+n2%10-n1%10<0){
+               diff+=(borrow+n2%10-n1%10+b)*m;
+               borrow=-1;
+           }else{
+               diff+=(borrow+n2%10-n1%10)*m;
+               borrow=0;
+           }
+           m*=10;
+           n1/=10;
+           n2/=10;
+       }
+       return diff;
+   }
+  
+  }

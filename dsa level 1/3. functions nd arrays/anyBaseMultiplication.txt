@@ -1,0 +1,77 @@
+any base multiplication
+
+************************
+ERROR IN THIS
+TO BE RESOLVED
+***********************
+
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) {
+    Scanner scn = new Scanner(System.in);
+    int b = scn.nextInt();
+    int n1 = scn.nextInt();
+    int n2 = scn.nextInt();
+
+    int d = getProduct(b, n1, n2);
+    System.out.println(d);
+ }
+public static int getAddition(int n1,int n2,int b){
+    int sum=0;
+        int c=0;
+        int d1=0,d2=0;
+        int m=1;
+        int d=0;
+        while(n1>0 || n2>0 || c==1){
+            d1=n1%10;
+            d2=n2%10;
+            if(d1+d2+c>=b){
+                sum+=((d1+d2+c-b)*m);
+                c=1;
+            }else{
+                sum+=((d1+d2+c)*m);
+                c=0;
+            }
+            m*=10;
+            n1=n1/10;
+            n2=n2/10;
+        }
+        return sum;
+}
+public static int getMultiplication(int n,int digit,int b){
+    int mult=0;
+    int c=0;
+    int m=1;
+    int ans=0;
+    while(n>0 || c>0){
+        mult=c+digit*(n%10);
+        if(mult>=b){
+            ans+=(mult%10)*m;
+            mult=mult/10;
+            c=mult;
+        }else{
+            ans+=(mult*m);
+            c=0;
+        }
+        m*=10;
+        n/=10;
+    }
+    return ans;
+}
+ public static int getProduct(int b, int n1, int n2){
+     // write your code here
+     int mult=0;
+     int ans=0;
+     int m=1;
+     while(n1>0){
+        mult=getMultiplication(n2,n1%10,b);
+        ans=getAddition(ans,mult*m,b);
+        n1/=10;
+        m*=10;
+     }
+     return ans;
+ }
+
+}
