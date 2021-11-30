@@ -1,0 +1,7 @@
+pending tasks
+
+pattern 19
+multiplication any base to any base
+swap array
+sum of array
+diff of array
