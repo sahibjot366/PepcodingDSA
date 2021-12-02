@@ -1,11 +1,10 @@
-sum of 2 arrays
 
 import java.io.*;
 import java.util.*;
 
 public class Main{
 
-public static int [] getSumArray(int [] arr1,int [] arr2){
+public static void getSumArray(int [] arr1,int [] arr2){
     int l1=arr1.length;
     int l2=arr2.length;
     int k=0;
@@ -18,6 +17,8 @@ public static int [] getSumArray(int [] arr1,int [] arr2){
     int i=l1-1,j=l2-1;
     int sum=0;
     while(i>=0 || j>=0 || c==1){
+        if(k<0)
+            break;
         if(i>=0 && j>=0)
             sum=c+arr1[i]+arr2[j];
         else if(i>=0 && j<0)
@@ -37,7 +38,11 @@ public static int [] getSumArray(int [] arr1,int [] arr2){
         j--;
         k--;
     }
-    return arr3;
+    if(c==1)
+        System.out.println(c);
+    for(int x=0;x<arr3.length;x++){
+        System.out.println(arr3[x]);
+    }
 }
 public static void main(String[] args) throws Exception {
     // write your code here
@@ -50,9 +55,7 @@ public static void main(String[] args) throws Exception {
     int [] arr2=new int[n2];
     for(int i=0;i<n2;i++)
         arr2[i]=scn.nextInt();
-    int [] arr3=getSumArray(arr1,arr2);
-    for(int i=0;i<arr3.length;i++)
-        System.out.println(arr3[i]);
+    getSumArray(arr1,arr2);
  }
 
 }

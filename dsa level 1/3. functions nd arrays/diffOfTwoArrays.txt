@@ -1,0 +1,58 @@
+diff of 2 arrays
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static int [] getDiffArray(int [] arr1,int [] arr2){
+    int l1=arr1.length;
+    int l2=arr2.length;
+    int i=l1-1,j=l2-1;
+    int [] arr3=new int[l2];
+    int diff=0;
+    int c=0;
+    while(j>=0){
+        if(i>=0 && j>=0)
+            diff=c+arr2[j]-arr1[i];
+        else if(j>=0 && i<0)
+            diff=c+arr2[j];
+        if(diff<0){
+            arr3[j]=diff+10;
+            c=-1;
+        }
+        else{
+            arr3[j]=diff;
+            c=0;
+        }
+        i--;
+        j--;
+    }
+    return arr3;
+}
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner scn=new Scanner(System.in);
+    int n1=scn.nextInt();
+    int [] a1=new int[n1];
+    for(int i=0;i<n1;i++)
+        a1[i]=scn.nextInt();
+    int n2=scn.nextInt();
+    int [] a2=new int[n2];
+    for(int i=0;i<n2;i++)
+        a2[i]=scn.nextInt();
+    int [] a3=getDiffArray(a1,a2);
+    boolean printZero=false;
+    for(int i=0;i<a3.length;i++)
+    {
+        if(a3[i]==0 && printZero)
+            System.out.println(a3[i]);
+        else if(a3[i]>0){
+            System.out.println(a3[i]);
+            printZero=true;
+        }
+            
+    }
+ }
+
+}

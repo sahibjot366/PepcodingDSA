@@ -2,4 +2,3 @@ pending tasks
 
 pattern 19
 multiplication any base to any base
-diff of array
