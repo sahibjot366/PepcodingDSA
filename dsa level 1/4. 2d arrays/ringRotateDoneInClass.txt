@@ -1,0 +1,121 @@
+RING ROTATE 
+
+AS DONE IN CLASS
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int [] getShell(int arr[][],int minr,int maxr,int minc,int maxc){
+        int a=maxr-minr;
+        int b=maxc-minc;
+        int total=2*(a+b);
+        int count=0;
+        int [] shell=new int[total];
+        for(int i=minr;i<=maxr;i++){
+                shell[count]=arr[i][minc];
+                count++;
+            }
+            minc++;
+            for(int j=minc;j<=maxc;j++){
+                shell[count]=arr[maxr][j];
+                count++;
+            }
+            maxr--;
+            for(int k=maxr;k>=minr;k--){
+                shell[count]=arr[k][maxc];
+                count++;
+            }
+            maxc--;
+            for(int l=maxc;l>=minc;l--){
+                shell[count]=arr[minr][l];
+                count++;
+            }
+            minr++;
+        return shell;
+    }
+    public static void setShell(int arr[][],int[] shell,int minr,int maxr,int minc,int maxc){
+        int a=maxr-minr;
+        int b=maxc-minc;
+        int total=2*(a+b);
+        int count=0;
+        for(int i=minr;i<=maxr;i++){
+                arr[i][minc]=shell[count];
+                count++;
+            }
+            minc++;
+            for(int j=minc;j<=maxc;j++){
+                arr[maxr][j]=shell[count];
+                count++;
+            }
+            maxr--;
+            for(int k=maxr;k>=minr;k--){
+                arr[k][maxc]=shell[count];
+                count++;
+            }
+            maxc--;
+            for(int l=maxc;l>=minc;l--){
+                arr[minr][l]=shell[count];
+                count++;
+            }
+            minr++;
+    }
+    public static void swap(int [] arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public static void reverse(int [] arr,int i,int j){
+        while(i<=j){
+            swap(arr,i,j);
+            i++;
+            j--;
+        }
+    }
+    public static void rotateArray1D(int [] arr,int r){
+        int n=arr.length;
+        r=(r%n+n)%n;
+        reverse(arr,0,n-r-1);
+        reverse(arr,n-r,n-1);
+        reverse(arr,0,n-1);
+    }
+    public static void ringRotate(int arr[][],int s,int r){
+        int n=arr.length;
+        int m=arr[0].length;
+        int minr=s-1;
+        int maxr=n-s;
+        int minc=s-1;
+        int maxc=m-s;
+        int [] shell=getShell(arr,minr,maxr,minc,maxc);
+        rotateArray1D(shell,r);
+        setShell(arr,shell,minr,maxr,minc,maxc);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int m=scn.nextInt();
+        int [][] arr=new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j]=scn.nextInt();
+            }
+        }
+        int s=scn.nextInt();
+        int r=scn.nextInt();
+        ringRotate(arr,s,r);
+        display(arr);
+    }
+
+    public static void display(int[][] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}

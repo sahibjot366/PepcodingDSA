@@ -1,0 +1,53 @@
+SEARCH IN 2D SORTED ARRAY
+BETTER APPROACH
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int [] findElement(int [][] arr,int x){
+        int n=arr.length;
+        int j=n-1;
+        int i=0;
+        int [] position=new int[2];
+        while(i<n && j>=0){
+            if(x==arr[i][j]){
+                position[0]=i;
+                position[1]=j;
+                return position;
+            }
+            if(x>arr[i][j]){
+                i++;
+            }
+            else{
+                j--;
+            }
+        }
+        position[0]=-1;
+        position[1]=-1;
+        return position;
+        
+    }
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int [][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++)
+                arr[i][j]=scn.nextInt();
+        }
+        int x=scn.nextInt();
+        int [] position=findElement(arr,x);
+        if(position[0]==-1){
+            System.out.println("Not Found");
+        }
+        else{
+            System.out.println(position[0]);
+            System.out.println(position[1]);
+        }
+    }
+
+}
