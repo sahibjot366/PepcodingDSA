@@ -1,0 +1,93 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int BinarySearchInRow(int [][] arr,int x,int i,int j){
+        int n=arr.length;
+        int beg=j;
+        int end=n-1;
+        int mid=0;
+        while(beg<=end){
+            mid=(beg+end)/2;
+            if(arr[i][mid]==x){
+                return mid;
+            }else if(x<arr[i][mid])
+                end=mid-1;
+            else
+                beg=mid+1;
+        }
+        return -1;
+    }
+    
+    public static int BinarySearchInColumn(int[][] arr,int x,int i,int j){
+        int n=arr.length;
+        int beg=i;
+        int end=n-1;
+        int mid=0;
+        while(beg<=end){
+            mid=(beg+end)/2;
+            if(arr[mid][j]==x)
+                return mid;
+            else if(x<arr[mid][j])
+                end=mid-1;
+            else
+                beg=mid+1;
+        }
+        return -1;
+    }
+    public static int[] SearchValue(int[][] arr,int x){
+        int n=arr.length;
+        int i=0;
+        int j=0;
+        int r=-1;
+        int c=-1;
+        int colIndex=0;
+        int rowIndex=0;
+        int [] position=new int[2];
+        while(i<n && j<n){
+            rowIndex=BinarySearchInRow(arr,x,i,j);
+            if(rowIndex!=-1){
+                r=i;
+                c=rowIndex;
+                break;
+            }
+            else{
+                colIndex=BinarySearchInColumn(arr,x,i+1,j);
+                if(colIndex!=-1){
+                    r=colIndex;
+                    c=j;
+                    break;
+                }
+            }
+            i++;
+            j++;
+        }
+        position[0]=r;
+        position[1]=c;
+        return position;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int [][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=scn.nextInt();
+            }
+        }
+        int x=scn.nextInt();
+        int [] position=SearchValue(arr,x);
+        int r=position[0];
+        int c=position[1];
+        if(r==-1)
+            System.out.println("Not Found");
+        else{
+            System.out.println(r);
+            System.out.println(c);
+        }
+    }
+
+}

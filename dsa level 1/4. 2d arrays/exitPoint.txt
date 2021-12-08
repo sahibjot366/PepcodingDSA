@@ -1,0 +1,88 @@
+exitPoint
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int[] exitPoint(int [][] arr){
+        int n=arr.length;
+        int m=arr[0].length;
+        int previ=0;
+        int prevj=0;
+        int i=0;
+        int j=0;
+        int [] a=new int[2];
+        while((i>=0 && i<n) || (j>=0 && j<m)){
+            
+                while(arr[i][j]!=1){
+                prevj=j;
+                j++;
+                if(j>=m){
+                     a[0]=i;
+                     a[1]=prevj;
+                     return a;
+                    } 
+                }
+                prevj=j;
+                i++;
+                
+            while(arr[i][j]!=1){
+                previ=i;
+                i++;
+                if(i>=n){
+                    a[0]=previ;
+                    a[1]=j;
+                    return a;
+                }
+            }
+            previ=i;
+            j--;
+            
+            while(arr[i][j]!=1){
+                prevj=j;
+                j--;
+                if(j<0){
+                    a[0]=i;
+                    a[1]=prevj;
+                    return a;
+                }
+            }
+            prevj=j;
+            i--;
+            
+            while(arr[i][j]!=1){
+                previ=i;
+                i--;
+                if(i<0){
+                    a[0]=previ;
+                    a[1]=j;
+                    return a;
+                }
+            }
+            previ=i;
+            j++;
+            
+        }
+        return a;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int m=scn.nextInt();
+        int [][] a=new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                a[i][j]=scn.nextInt();
+            }
+            
+        }
+        int[] ans=exitPoint(a);
+        for(int i=0;i<2;i++){
+            System.out.println(ans[i]);
+        }
+    }
+
+}

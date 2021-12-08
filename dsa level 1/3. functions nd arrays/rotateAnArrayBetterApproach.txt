@@ -1,0 +1,50 @@
+BETTER APPROACH FOR ROTATION OF ARRAY
+
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+/*
+Better approach
+
+(A'B')'
+B''A''
+BA
+
+
+*/
+public class Main
+{
+    public static void swap(int [] arr,int i,int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public static void reverse(int [] arr,int beg,int last){
+        int i=beg;
+        int j=last;
+        while(i<=j){
+            swap(arr,i,j);
+            i++;
+            j--;
+        }
+    }
+    public static void rotate(int [] arr,int k){
+        
+        int n=arr.length;
+        k=(k%n+n)%n;
+        reverse(arr,0,n-k-1);
+        reverse(arr,n-k,n-1);
+        reverse(arr,0,n-1);
+    }
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		int [] arr=new int[]{1,2,3,4,5};
+		rotate(arr,-11);
+		for(int i=0;i<arr.length;i++)
+		    System.out.print(arr[i]);
+	}
+}

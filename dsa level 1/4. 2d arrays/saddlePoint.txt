@@ -1,0 +1,74 @@
+SADDLE POINT 
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    
+    public static int[] MinimumInRow(int[][] arr,int i){
+        int m=arr.length;
+        int j=0;
+        int min=Integer.MAX_VALUE;
+        int minj=0;
+        while(j<m){
+            if(arr[i][j]<min){
+                min=arr[i][j];
+                minj=j;
+            }
+            j++;
+        }
+        int [] minimumValues=new int[2];
+        minimumValues[0]=min;
+        minimumValues[1]=minj;
+        return minimumValues;
+    }
+    
+    public static int MaxValueInColumn(int[][] arr,int j){
+        int n=arr.length;
+        int i=0;
+        int max=Integer.MIN_VALUE;
+        while(i<n){
+            if(arr[i][j]>max){
+                max=arr[i][j];
+            }
+            i++;
+        }
+        return max;
+    }
+    
+    public static int SaddlePoint(int[][] arr){
+        int n=arr.length;
+        int [] minimumValues=new int[2];
+        int min=0;
+        int minj=0;
+        int max=0;
+        for(int i=0;i<n;i++){
+            minimumValues=MinimumInRow(arr,i);
+            min=minimumValues[0];
+            minj=minimumValues[1];
+            max=MaxValueInColumn(arr,minj);
+            if(min==max)
+                return max;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int [][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=scn.nextInt();
+            }
+        }
+        int sp=SaddlePoint(arr);
+        if(sp==-1)
+            System.out.println("Invalid input");
+        else
+            System.out.println(sp);
+    }
+
+}

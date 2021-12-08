@@ -1,0 +1,73 @@
+ROTATE BY 90
+2D ARRAY
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+
+    public static void swap(int[][] arr,int i,int j){
+        int temp=arr[i][j];
+        arr[i][j]=arr[j][i];
+        arr[j][i]=temp;
+    }
+    public static void swap(int [][] arr,int i,int j1,int j2){
+        int temp=arr[i][j1];
+        arr[i][j1]=arr[i][j2];
+        arr[i][j2]=temp;
+    }
+    public static void transpose(int[][] arr){
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(i<j){
+                    swap(arr,i,j);
+                }
+            }
+        }
+    }
+    public static void reverse(int[][] arr){
+        int x=0;
+        int y=0;
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            x=0;
+            y=n-1;
+            while(x<=y){
+                swap(arr,i,x,y);
+                x++;
+                y--;
+            }
+        }
+    }
+    public static void rotateBy90(int[][] arr){
+        transpose(arr);
+        reverse(arr);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int[][] arr=new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=scn.nextInt();
+            }
+        }
+        rotateBy90(arr);
+        display(arr);
+    }
+
+    public static void display(int[][] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < arr[0].length; j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}

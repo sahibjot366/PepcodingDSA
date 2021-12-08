@@ -1,0 +1,52 @@
+brokenEconomy
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void brokenEconomy(int [] arr,int d){
+    int beg=0;
+    int end=arr.length-1;
+    int mid=0;
+    int low=0;
+    int high=0;
+    while(beg<=end){
+        mid=(beg+end)/2;
+        if(arr[mid]==d){
+            low=arr[mid];
+            high=arr[mid+1];
+            break;
+        }else if(d<arr[mid+1] && d>arr[mid]){
+            low=arr[mid];
+            high=arr[mid+1];
+            break;
+        }else if(d<arr[mid] && d>arr[mid-1]){
+            low=arr[mid-1];
+            high=arr[mid];
+            break;
+        }
+        else if(d>arr[mid]){
+            beg=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    System.out.println(high);
+    System.out.println(low);
+}
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner scn=new Scanner(System.in);
+    int n=scn.nextInt();
+    int [] arr=new int[n];
+    for(int i=0;i<n;i++){
+        arr[i]=scn.nextInt();
+    }
+    int d=scn.nextInt();
+    brokenEconomy(arr,d);
+ }
+
+}

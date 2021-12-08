@@ -1,0 +1,48 @@
+first and last index using binary search
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+public static int binarySearch(int [] arr,int element,boolean findFirst){
+    int beg=0;
+    int end=arr.length-1;
+    int mid=0;
+    int ans=-1;
+    while(beg<=end){
+        mid=(end+beg)/2;
+        if(arr[mid]==element){
+            ans=mid;
+            if(findFirst){
+                end=mid-1;
+            }
+            else{
+                beg=mid+1;
+            }
+        }
+        else if(element<arr[mid]){
+            end=mid-1;
+        }
+        else{
+            beg=mid+1;
+        }
+    }
+    return ans;
+}
+public static void findMinAndMax(int [] arr,int element){
+    System.out.println(binarySearch(arr,element,true));
+    System.out.println(binarySearch(arr,element,false));
+}
+public static void main(String[] args) throws Exception {
+    // write your code here
+    Scanner scn=new Scanner(System.in);
+    int n=scn.nextInt();
+    int [] arr=new int[n];
+    for(int i=0;i<n;i++){
+        arr[i]=scn.nextInt();
+    }
+    int e=scn.nextInt();
+    findMinAndMax(arr,e);
+ }
+
+}
