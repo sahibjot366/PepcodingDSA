@@ -1,0 +1,34 @@
+Get SubSequence
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn=new Scanner(System.in);
+        String str=scn.nextLine();
+        ArrayList<String> arr=gss(str);
+        System.out.println(arr);
+    }
+
+    public static ArrayList<String> gss(String str) {
+        if(str.equals("")){
+            ArrayList<String> arr=new ArrayList<>();
+            arr.add("");
+            return arr;
+        }
+        char ch=str.charAt(0);
+        String ros=str.substring(1);
+        ArrayList<String> recArr=gss(ros);
+        ArrayList<String> retArr=new ArrayList<>();
+        for(String s:recArr){
+            retArr.add(s);
+        }
+        for(String s:recArr){
+            retArr.add(ch+s);
+        }
+        return retArr;
+    }
+
+}

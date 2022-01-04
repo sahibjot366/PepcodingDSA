@@ -1,0 +1,48 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    static int[][] directions={{-1,-1},{-1,0},{-1,1}};
+    
+    public static boolean isSafe(int r,int c,int[][] chess){
+        if(r<0 || c<0 || c>=chess[0].length){
+            return true;
+        }
+        if(chess[r][c]==1){
+            return false;
+        }
+        int rinc=0;
+        int cinc=0;
+        for(int d=0;d<directions.length;d++){
+            rinc=directions[d][0];
+            cinc=directions[d][1];
+            boolean ans=isSafe(r+rinc,c+cinc,chess);
+            if(!ans){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Scanner scn=new Scanner(System.in);
+        int n=scn.nextInt();
+        int [][] chess=new int[n][n];
+        printNQueens(chess,"",0);
+    }
+
+    public static void printNQueens(int[][] chess, String asf, int row) {
+        if(row==chess.length){
+            System.out.println(asf+".");
+            return;
+        }
+        for(int col=0;col<chess.length;col++){
+            if(isSafe(row,col,chess)){
+                chess[row][col]=1;
+                printNQueens(chess,asf+row+"-"+col+", ",row+1);
+                chess[row][col]=0;
+            }
+        }
+    }
+}

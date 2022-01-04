@@ -1,0 +1,22 @@
+import java.lang.Math;
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        int n=nums.length;
+        int num=0;
+        int rem=0;
+        List<List<Integer>> ans=new ArrayList<List<Integer>>();
+        for(int i=0;i<Math.pow(2,n);i++){
+            List<Integer> items=new ArrayList<Integer>();
+            num=i;
+            for(int j=0;j<n;j++){
+                rem=num%2;
+                num=num/2;
+                if(rem==1){
+                    items.add(nums[j]);
+                }
+            }
+            ans.add(items);
+        }
+        return ans;
+    }
+}

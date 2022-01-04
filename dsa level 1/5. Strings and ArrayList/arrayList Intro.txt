@@ -1,0 +1,44 @@
+ARRAYLIST INTRO
+
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner scn=new Scanner(System.in);
+		ArrayList<Integer> arr=new ArrayList<>();
+		//.size()
+		//.add(value)
+		//.get(index)
+		//.remove(index)
+		//.set()
+		arr.add(5);
+		arr.add(4);
+		for(int i=0;i<arr.size();i++){
+		    System.out.print(arr.get(i)+" ");
+		}
+		System.out.println("\nNow using for each loop");
+		for(int item:arr){
+		    System.out.print(item+" ");
+		}
+		System.out.println();
+		System.out.println(arr);
+		
+		//Take Input
+		for(int i=1;i<=3;i++){
+		    arr.add(scn.nextInt());
+		}
+		System.out.println(arr);
+		arr.remove(0);
+		System.out.println(arr);
+		arr.set(0,40);
+		System.out.println(arr);
+	}
+}

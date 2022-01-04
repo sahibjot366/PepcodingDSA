@@ -1,0 +1,26 @@
+STRING WIT DIFFERENCE OF EVERY 2 CONSEC
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static String solution(String str){
+		// write your code here
+        StringBuilder ans=new StringBuilder();
+        int length=str.length();
+        ans.append(str.charAt(0));
+        for(int i=1;i<length;i++){
+            ans.append(str.charAt(i)-str.charAt(i-1));
+            ans.append(str.charAt(i));
+        }
+		return ans.toString();
+	}
+	public static void main(String[] args) {
+		Scanner scn = new Scanner(System.in);
+		String str = scn.next();
+		System.out.println(solution(str));
+	}
+
+}

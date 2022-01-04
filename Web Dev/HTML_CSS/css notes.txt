@@ -1,0 +1,11 @@
+Css Selectors
+
+* Used for web scraping
+
+3 types of css
+inline
+internal
+external
+
+Most prefer styling is inline
+inline styling overrides internal styling
